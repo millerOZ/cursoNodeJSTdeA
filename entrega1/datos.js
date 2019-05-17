@@ -58,10 +58,10 @@ let crearArchivo = (ofertaCurso) => {
     console.log("Ha ingresado un ID que no corresponde a ningun curso");
   }else{
     texto = 'El estudiante: ' + argv.n + '\n' +
-            'Con cedula: '    + argv.c + '\n' +
+            'Con cédula: '    + argv.c + '\n' +
             'Se ha matriculado en el curso llamado: ' +buscaCurso(argv.i).nombre + ' \n'+
             'Tiene una duracion de: '+ buscaCurso(argv.i).duracion +'\n' +
-            'Tiene un valor de: ' +buscaCurso(argv.i).valor
+            'Tiene un valor de: ' +buscaCurso(argv.i).valor + ' pesos'
     fs.writeFile('matricula.txt',texto,(err) => {
       if(err) throw (err);
       console.log('Se ha creado el Archivo');
