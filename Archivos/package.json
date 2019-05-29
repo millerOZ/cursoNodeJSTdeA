@@ -1,0 +1,15 @@
+{
+  "name": "bonus",
+  "version": "1.0.1",
+  "description": "bonus mostrar estudiantes con promedio alto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Miller Ossa Samboni",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "yargs": "^13.2.4"
+  }
+}
