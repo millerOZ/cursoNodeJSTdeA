@@ -1,0 +1,54 @@
+{{>header}}
+    <p>Bienvenido a la pagina inicio</p>
+    <form action="/crearCurso" method="post">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+           <div class="col">
+            <label for="exampleFormControlInput1">Id</label>
+            <input type="number" class="form-control" name ="id" placeholder="Id del curso" required>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="exampleFormControlInput1">Nombre</label>
+          <input type="text" class="form-control" placeholder="Diseño Grafico" name="nombre" required >
+        </div>
+      </div>
+      <div class="form-row">
+     <div class="form-group col-md-6">
+          <div class="col">
+            <label for="exampleFormControlSelect1">Modalidad</label>
+               <select class="form-control" id="exampleFormControlSelect1" name="modalidad" required>
+                 <option></option>
+                 <option value="virtual">Virtual</option>
+                 <option value="presencial">Presencial</option>
+               </select>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="exampleFormControlInput1">Valor</label>
+          <input type="number" class="form-control" placeholder="Valor" name="valor" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <div class="col">
+            <label for="validationTextarea">Descripción</label>
+            <textarea class="form-control " id="validationTextarea" name="descripcion" required></textarea>
+          </div>
+        </div>
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlInput1">Intensidad</label>
+            <input type="number" class="form-control" placeholder="Valor" name="intensidad" required>
+          </div>
+      </div>
+      <div >
+        <select type="text" name="estado" hidden>
+           <option value="disponible">disponible</option>
+        </select>
+      </div>
+      <div class="col-lg-12">
+        <button class="btn btn-success">Enviar</button>
+      </div>
+    </form>
+    <!-- {{{listar}}} -->
+{{>footer}}
