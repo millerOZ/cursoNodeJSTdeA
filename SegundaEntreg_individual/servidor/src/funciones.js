@@ -9,15 +9,15 @@ const crear = (estudiante) => {
     descripcion: estudiante.descripcion,
     valor: estudiante.valor,
     modalidad: estudiante.modalidad,
-    intensidad: estudiante.intensidad
+    intensidad: estudiante.intensidad,
+    estado: estudiante.estado
   };
   let duplicado = listaEstudiantes.find(nom => nom.id == estudiante.id)
   if(!duplicado){
     listaEstudiantes.push(est);
     // guardar();
   }else{
-    console.log("Ya existe otro estudiante con ese id");
-    // alert("Ya existe otro estudiante con ese id");
+   console.log("Ya existe otro estudiante con ese id");
   }
 }
 const listar = () => {

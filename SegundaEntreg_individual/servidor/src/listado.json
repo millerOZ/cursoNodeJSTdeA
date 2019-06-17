@@ -1,2 +1,2 @@
-[{"id":12,"nombre":"Mikler","descripcion":"nodejs curso","valor":5,"modalidad":"virtual","intensidad":5,"estado":"disponible"},
- {"id":1,"nombre":"Ossa","descripcion":"python curso","valor":7,"modalidad":"presencial","intensidad":10,"estado":"disponible"}]
+[{"id":12,"nombre":"Mikler","descripcion":"nodejscurso","valor":5,"modalidad":"virtual","intensidad":5,"estado":"disponible"},
+ {"id":1,"nombre":"Ossa","descripcion":"pythoncurso","valor":7,"modalidad":"presencial","intensidad":10,"estado":"disponible"}]

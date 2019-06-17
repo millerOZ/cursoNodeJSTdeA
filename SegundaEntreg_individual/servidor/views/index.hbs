@@ -1,6 +1,9 @@
 {{>header}}
-    <p>Bienvenido a la pagina inicio</p>
-    <form action="/crearCurso" method="post">
+<div class="text-center">
+  <h2>Formulario para ingresar un nuevo curso</h2>
+  <p> Utilice este formulario para ingresar la información de un nuevo curso</p>
+</div>
+    <form action="/VerCurso" method="post">
       <div class="form-row">
         <div class="form-group col-md-6">
            <div class="col">
@@ -9,25 +12,29 @@
           </div>
         </div>
         <div class="form-group col-md-6">
-          <label for="exampleFormControlInput1">Nombre</label>
-          <input type="text" class="form-control" placeholder="Diseño Grafico" name="nombre" required >
+          <div class="col">
+            <label for="exampleFormControlInput1">Nombre</label>
+            <input type="text" class="form-control" placeholder="Diseño Grafico" name="nombre" required >
+          </div>
         </div>
       </div>
       <div class="form-row">
-     <div class="form-group col-md-6">
+        <div class="form-group col-md-6">
           <div class="col">
             <label for="exampleFormControlSelect1">Modalidad</label>
-               <select class="form-control" id="exampleFormControlSelect1" name="modalidad" required>
-                 <option></option>
+               <select class="form-control" id="exampleFormControlSelect1" name="modalidad" >
+                 <option>-</option>
                  <option value="virtual">Virtual</option>
                  <option value="presencial">Presencial</option>
                </select>
           </div>
         </div>
-        <div class="form-group col-md-6">
-          <label for="exampleFormControlInput1">Valor</label>
-          <input type="number" class="form-control" placeholder="Valor" name="valor" required>
-        </div>
+          <div class="form-group col-md-6">
+            <div class="col">
+              <label for="exampleFormControlInput1">Valor</label>
+              <input type="number" class="form-control" placeholder="Valor" name="valor" >
+            </div>
+          </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -37,17 +44,19 @@
           </div>
         </div>
           <div class="form-group col-md-6">
-            <label for="exampleFormControlInput1">Intensidad</label>
-            <input type="number" class="form-control" placeholder="Valor" name="intensidad" required>
+            <div class="col">
+              <label for="exampleFormControlInput1">Intensidad horaria</label>
+              <input type="number" class="form-control" placeholder="En horas" name="intensidad" >
+            </div>
           </div>
       </div>
-      <div >
-        <select type="text" name="estado" hidden>
-           <option value="disponible">disponible</option>
-        </select>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" class="form-control" placeholder="disponible" value="disponible" name="estado" hidden>
+        </div>
       </div>
-      <div class="col-lg-12">
-        <button class="btn btn-success">Enviar</button>
+      <div class="col-lg-12 ">
+        <button class="btn btn-success ">Enviar</button>
       </div>
     </form>
     <!-- {{{listar}}} -->

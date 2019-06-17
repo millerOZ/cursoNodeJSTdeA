@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
+const funciones = require('./funciones');
 require('./helpers');
 
 const directorioPublico = path.join(__dirname,'../public');
@@ -20,12 +21,35 @@ app.get('/',(req,res) =>{
   });
 });
 
-app.post('/calculos',(req,res) =>{
-  res.render('calculos',{
-    estudiante: req.body.nombre,
-    nota1: parseInt(req.body.nota1),
-    nota2: parseInt(req.body.nota2),
-    nota3: parseInt(req.body.nota3)
+app.get('/inscripcion',(req,res) =>{
+  res.render('formularioInscripcion',{
+  });
+});
+
+app.post('/inscripcionUsuario',(req,res) =>{
+  res.render('inscripcion',{
+    nombre: req.body.nombre,
+    cursoDisponible: req.body.cursoDisponible
+  });
+});
+
+app.post('/verCurso',(req,res) =>{
+
+  listaEstudiantes = require('./listado.json');
+  let duplicado = listaEstudiantes.find(nom => nom.id == parseInt(req.body.id))
+  if(duplicado){
+    res.render('idRepetido',{
+    })
+  }
+  funciones.crear(req.body);
+   res.render('verCurso',{
+   id: parseInt(req.body.id),
+   nombre: req.body.nombre,
+   descripcion: req.body.descripcion,
+   valor: parseInt(req.body.valor),
+   modalidad: req.body.modalidad,
+   intensidad: parseInt(req.body.intensidad),
+   estado: req.body.estado
   });
 });
 
@@ -41,6 +65,11 @@ app.post('/crearCurso',(req,res) =>{
   });
 });
 
+app.get('/listaInscripciones',(req,res) => {
+  res.render('listaInscripcion',{
+    
+  })
+})
 app.get('*',(req,res)=>{
     res.render('error',{
       estudiante: 'error'

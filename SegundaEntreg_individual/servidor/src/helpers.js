@@ -4,7 +4,7 @@ const funciones = require('./funciones');
 hbs.registerHelper('obtenerPromedio',(nota1,nota2,nota3) => {
   return (nota1+nota2+nota3) / 3;
 })
-hbs.registerHelper('crear',(id,nombre,descripcion,valor,modalidad,intensidad,estado) =>{
+hbs.registerHelper('crear',(id,nombre,descripcion,valor,modalidad,intensidad,disponible) =>{
   let est = {
     id: id,
     nombre: nombre,
@@ -12,12 +12,23 @@ hbs.registerHelper('crear',(id,nombre,descripcion,valor,modalidad,intensidad,est
     valor: valor,
     modalidad: modalidad,
     intensidad: intensidad,
-    estado: estado
+    disponible: disponible
   }
   funciones.crear(est);
 })
 
-hbs.registerHelper('verCurso',(id,nombre,descripcion,valor,modalidad,intensidad,estado) =>{
+hbs.registerHelper('verCurso',(id,nombre,descripcion,valor,modalidad,intensidad,disponible) =>{
+  let est = {
+    id: id,
+    nombre: nombre,
+    descripcion: descripcion,
+    valor: valor,
+    modalidad: modalidad,
+    intensidad: intensidad,
+    disponible: "disponible"
+  }
+  funciones.crear(est);
+
   listaEstudiantes = require('./listado.json')
   let texto = "<table class='table'> \
                 <thead class='thead-dark'>\
@@ -32,6 +43,7 @@ hbs.registerHelper('verCurso',(id,nombre,descripcion,valor,modalidad,intensidad,
                 <tbody>";
   listaEstudiantes.forEach(estudiante => {
     texto = texto +
+    
     '<tr>' +
     '<td>' + estudiante.id         + '</td>' +
     '<td>' + estudiante.nombre     + '</td>' +
@@ -39,7 +51,7 @@ hbs.registerHelper('verCurso',(id,nombre,descripcion,valor,modalidad,intensidad,
     '<td>' + estudiante.valor      + '</td>' +
     '<td>' + estudiante.modalidad  + '</td>' +
     '<td>' + estudiante.intensidad  + '</td>' +
-    '<td>' + estudiante.estado + '</td>';
+    '<td>' + estudiante.disponible + '</td>';
   })
   '</tbody></table>';
   return texto;
@@ -47,8 +59,8 @@ hbs.registerHelper('verCurso',(id,nombre,descripcion,valor,modalidad,intensidad,
 
 hbs.registerHelper('listar',() =>{
   listaEstudiantes = require('./listado.json')
-  let texto =  "<table> \
-                <thread>\
+  let texto =  "<table class='table'> \
+                <thead class='thead-dark'>\
                 <th> ID </th>\
                 <th> Nombre </th>\
                 <th> descripcion </th>\
@@ -56,7 +68,7 @@ hbs.registerHelper('listar',() =>{
                 <th> modalidad </th>\
                 <th> intensidad </th>\
                 <th> estado </th>\
-                </thread>\
+                </thead>\
                 <tbody>";
   
   'Lista de estudiantes <br> ';
@@ -72,5 +84,90 @@ hbs.registerHelper('listar',() =>{
             '<td>' + estudiante.estado + '</td></tr>';
   })
   texto = texto+'</tbody></table>'
+  return texto;
+})
+
+hbs.registerHelper('listar2',() =>{
+  
+  listaEstudiantes = require('./listado.json')
+  let texto =  "<div class='accordion' id='accordionExample'>";
+  i = 1;
+  listaEstudiantes.forEach(estudiante => {
+    texto = texto +
+          `  <div class="card">
+                <div class="card-header" id="heading${i}">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                      ${estudiante.nombre}
+                    </button>
+                  </h2>
+                </div>
+                
+                <div id="collapse${i}" class="collapse " aria-labelledby="heading${i}" data-parent="#accordionExample">
+                  <div class="card-body">
+                  ${estudiante.id} <br>
+                  ${estudiante.descripcion} <br>
+                  ${estudiante.valor} <br>
+                  ${estudiante.modalidad} <br>
+                  ${estudiante.intensidad} <br>
+                  ${estudiante.estado} <br>
+                  </div>
+                </div>`
+            i = i +1;
+  })
+  texto = texto+'</div>';
+  return texto;
+})
+
+hbs.registerHelper('registroInscripcion',(nombre, cursoDisponible) => {
+  let texto =  "<div class='text-center'> \
+    <h2> Estudiante " + nombre + " inscripto con exito en el curso "+ cursoDisponible
+    +"</h2> </div>" ;
+  return texto;
+})
+
+hbs.registerHelper('listaInscripciones',() =>{
+  listaEstudiantes = require('./inscripciones.json')
+  let texto =  "<div class='accordion' id='accordionExample'>";
+  i = 1;
+  listaEstudiantes.forEach(estudiante => {
+    texto = texto +
+          `  <div class="card">
+                <div class="card-header" id="heading${i}">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                      ${estudiante.cursoDisponible}
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapse${i}" class="collapse " aria-labelledby="heading${i}" data-parent="#accordionExample">
+                  <div class="card-body">
+            `
+                  listaEstudiantes = require('./inscripciones.json')
+                  let texto =  "<table class='table'> \
+                                <thead class='thead-dark'>\
+                                <th> Documento </th>\
+                                <th> Nombre </th>\
+                                <th> Correo </th>\
+                                <th> Telefono </th>\
+                                <th> Eliminar </th>\
+                                </thead>\
+                                <tbody>";
+                  listaEstudiantes.forEach(estudiante => {
+                    texto = texto +
+                            '<tr>' +
+                            '<td>'+ estudiante.id + '</td>' +
+                            '<td>'+ estudiante.nombre + '</td>' +
+                            '<td>'+ estudiante.correo + '</td>' +
+                            '<td>' + estudiante.telefono + '</td></tr>';
+                  })
+                  texto = texto+'</tbody></table>'
+                  // return texto;
+                  `
+                  </div>
+                </div>`
+            i = i +1;
+  })
+  texto = texto+'</div>';
   return texto;
 })
